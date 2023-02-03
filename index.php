@@ -25,7 +25,8 @@
 				<label for="password">Mot de passe:</label>
 				<input type="password" name="password" id="password" required>
 			</div>
-			<input type="submit" value="Se connecter">
+			<input type="submit" value="Se connecter" href="google.com">
+			<input type="submit" value="S'inscrire">
 		</form>
 	</div>
 
@@ -38,21 +39,21 @@
   <?php
 session_start();
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['user']) && isset($_POST['mdp'])) {
 	// Connexion à la base de données
-	$db = mysqli_connect('host', 'username', 'password', 'database');
+	$db = mysqli_connect('host', 'user', 'mdp', 'database');
 	
 	// Récupération des données du formulaire
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username = $_POST['user'];
+	$password = $_POST['mdp'];
 	
 	// Vérification de l'existence de l'utilisateur dans la base de données
-	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+	$query = "SELECT * FROM user WHERE user='$username' AND password='$password'";
 	$result = mysqli_query($db, $query);
 	
 	if (mysqli_num_rows($result) == 1) {
 		// Connexion réussie
-		$_SESSION['username'] = $username;
+		$_SESSION['user'] = $username;
 		header("Location: welcome.php");
 	} else {
 		// Connexion échouée

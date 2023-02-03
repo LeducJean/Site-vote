@@ -25,4 +25,5 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-	width
+	width: 100%;
+}
