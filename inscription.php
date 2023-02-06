@@ -28,7 +28,7 @@ try{
 ?>
 
 	<div class="login-form">
-		<form action="connexion.php" method="post">
+		<form action="" method="post">
 			<h2>S'inscrire</h2>
 			<div class="form-group">
 				<label for="username">Nom d'utilisateur:</label>
@@ -40,6 +40,8 @@ try{
 			</div>
 					<input type="submit" name="inscription" value="inscription"></input>
 				</form>
+		<form action="connexion.php" method="post">
+		<input type="submit" name="se connecter" value="se connecter"></input>
 	</div>
 
 <?php
