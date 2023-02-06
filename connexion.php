@@ -25,30 +25,38 @@ try{
 
 
 session_start();
-if (isset($_POST['pseudo'])){
+if (isset($_POST['se connecter'])){
   $pseudo = stripslashes($_REQUEST['pseudo']);
   $pseudo = mysqli_real_escape_string($conn, $pseudo);
   $mdp = stripslashes($_REQUEST['mdp']);
   $mdp = mysqli_real_escape_string($conn, $mdp);
-    $query = "SELECT * FROM `User` WHERE pseudo='$pseudo' and password='".hash('sha256', $mdp)."'";
-	//remplacer "password" en "mdp (en haut)"
+  $query = "SELECT INTO User (pseudo, mdp) VALUES ('" .$_POST['pseudo']. "','" .$_POST['mdp']."')";
+  $pdo->query($query);
+
+	//remplacer "password" en "mdp" ou inverse (en haut)"
 
   $result = mysqli_query($conn,$query) or die(mysql_error());
   $rows = mysqli_num_rows($result);
   if($rows==1){
       $_SESSION['pseudo'] = $pseudo;
-      header("Location: SiteFilm.php");
+      include'SiteFilm.php';
   }else{
     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
   }
 }
+echo "test".$_POST['se connecter'];
+echo "requete : ".$query;
+echo "pseudo : ".$pseudo;
+echo "mdp : ".$mdp;
+
+echo "fin";
 ?>
 
 
 
 <div class="login-form">
 		<form action="" method="post">
-			<h2>S'inscrire</h2>
+			<h2>Se connecter</h2>
 			<div class="form-group">
 				<label for="username">Nom d'utilisateur:</label>
 				<input type="text" placeholder="Pseudo" name="pseudo">
@@ -57,7 +65,7 @@ if (isset($_POST['pseudo'])){
 				<label for="password">Mot de passe:</label>
 				<input type="password" placeholder="Password" name="mdp">
 			</div>
-					<input type="submit" name="se connecter" value="se connecter"></input>
+					<input type="submit" name="se connecter" value="Se connecter"></input>
             
 
 
@@ -69,7 +77,7 @@ if (isset($_POST['pseudo'])){
 <?php } ?>
 </form>
 <form action="inscription.php" method="post">
-  <input type="submit" name="inscription" value="inscription"></input>
+  <input type="submit" name="inscription" value="Inscrivez-vous"></input>
 </form>
 </div>
 

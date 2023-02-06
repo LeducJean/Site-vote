@@ -18,7 +18,6 @@ $passPrivilege = "root";
 
 try{
     $GLOBALS["pdo"] = new PDO('mysql:host=' . $ipserver . ';dbname=' . $nomBase . '', $loginPrivilege, $passPrivilege);
-    echo "début";
 }catch(Exception $e){
     echo $e->getMessage();
 }
@@ -38,20 +37,16 @@ try{
 				<label for="password">Mot de passe:</label>
 				<input type="password" placeholder="Password" name="mdp">
 			</div>
-					<input type="submit" name="inscription" value="inscription"></input>
+					<input type="submit" name="inscription" value="S'inscrire"></input>
 				</form>
 		<form action="connexion.php" method="post">
-		<input type="submit" name="se connecter" value="se connecter"></input>
+		<input type="submit" name="se connecter" value="Connectez-vous"></input>
 	</div>
 
 <?php
 if(isset($_POST["inscription"])){
-    echo "test".$_POST['pseudo'];
     $requeteUser = "INSERT INTO User (pseudo, mdp) VALUES ('" .$_POST['pseudo']. "','" .$_POST['mdp']."')";
-    echo "requete : ".$requeteUser;
     $result2 = $GLOBALS["pdo"]->query($requeteUser);
-    echo "fin";
-
 }
 
  ?>
