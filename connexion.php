@@ -18,7 +18,6 @@ $passPrivilege = "root";
 
 try{
     $GLOBALS["pdo"] = new PDO('mysql:host=' . $ipserver . ';dbname=' . $nomBase . '', $loginPrivilege, $passPrivilege);
-    echo "début";
 }catch(Exception $e){
     echo $e->getMessage();
 }
@@ -44,12 +43,6 @@ if (isset($_POST['se connecter'])){
     $message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
   }
 }
-echo "test".$_POST['se connecter'];
-echo "requete : ".$query;
-echo "pseudo : ".$pseudo;
-echo "mdp : ".$mdp;
-
-echo "fin";
 ?>
 
 
