@@ -1,7 +1,4 @@
 <?php session_start();
-if(isset($_POST['deconnexion'])) {
-  echo "vider la session puis la destrpy";
-}
 
 ?>
 <!DOCTYPE html>

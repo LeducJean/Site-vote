@@ -1,6 +1,6 @@
 <?php session_start();
 if(isset($_POST['deconnexion'])) {
-  echo "vider la session puis la destrpy";
+  echo "vider la session puis la destroy";
 }
 
 ?>
@@ -55,8 +55,8 @@ if(isset($_POST['deconnexion'])) {
     ?> <form action="" method="post">
     <input type="submit" name="deconnexion" value="se déconnecté"></input>
   </form>
-      faire formulaire de deconnexion
-    <?php echo "je suis connecy";
+      faire formulaire de deconnxion
+    <?php echo "je suis connecté";
   }else{
   ?>
 
