@@ -1,7 +1,4 @@
 <?php session_start();
-if(isset($_POST['deconnexion'])) {
-  echo "vider la session puis la destroy";
-}
 
 ?>
 <!DOCTYPE html>
@@ -29,34 +26,41 @@ if(isset($_POST['deconnexion'])) {
     echo $e->getMessage();
   }
 
-
-
   if (isset($_POST['connexion'])) {
-    echo "toto 1";
     $pseudo = stripslashes($_REQUEST['pseudo']);
     $mdp = stripslashes($_REQUEST['mdp']);
     $query = "SELECT * FROM User WHERE pseudo='" . $_POST['pseudo'] . "' AND mdp='" . $_POST['mdp'] . "'";
-    echo $query;
     $resultat = $GLOBALS["pdo"]->query($query);
     if($resultat->rowCount()>0){
-      echo "toto 3";
       $_SESSION["connexion"]= true;
+      include'SiteFilm.php';
     }
-    //remplacer "password" en "mdp" ou inverse (en haut)"
-
-   
-  }else{
-    echo "toto 2";
   }
 
 
 
   if(isset($_SESSION["connexion"]) && $_SESSION["connexion"] == true){
     ?> <form action="" method="post">
-    <input type="submit" name="deconnexion" value="se déconnecté"></input>
+    <input type="submit" name="deconnexion" value="se déconnecter"></input>
   </form>
-      faire formulaire de deconnxion
-    <?php echo "je suis connecté";
+
+  <?php
+  if(isset($_POST['deconnexion'])) {
+    session_unset();
+    session_destroy();
+}
+
+?>
+
+
+  <!-- formulaire de déconnexion -->
+
+    <?php
+
+    //insérer le site ici
+
+
+
   }else{
   ?>
 
@@ -64,12 +68,12 @@ if(isset($_POST['deconnexion'])) {
     <form action="" method="post">
       <h2>Se connecter</h2>
       <div class="form-group">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" placeholder="Pseudo" name="pseudo">
+        <label for="username">Nom d'utilisateur : (4 caractères min)</label>
+        <input type="text" placeholder="Pseudo" name="pseudo" required minlength="4">
       </div>
       <div class="form-group">
-        <label for="password">Mot de passe :</label>
-        <input type="password" placeholder="Password" name="mdp">
+        <label for="password">Mot de passe : (4 caractères min)</label>
+        <input type="password" placeholder="Password" name="mdp" required minlength="4">
       </div>
       <input type="submit" name="connexion" value="Se connecter"></input>
       <?php if (!empty($message)) { ?>

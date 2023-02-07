@@ -22,6 +22,8 @@ try {
 
     $GLOBALS["pdo"] = new PDO('mysql:host=' . $ipserver . ';dbname=' . $nomBase . '', $loginPrivilege, $passPrivilege);
 
+
+
     if (isset($_POST["Valider"])) {
     echo "idFilm = ".$_POST["idFilm"]." idUser = ".$Post["idUser"]." DATE = ".$_POST["DATE"];
     }
@@ -35,6 +37,7 @@ try {
     $resultatFilm = $GLOBALS["pdo"]->query($requeteFilm);
     //resultat est du coup un objet de type PDOStatement
     $tabFilm = $resultatFilm->fetchALL();
+
 
     //$requete = "select * from User";
     //$resultat = $GLOBALS["pdo"]->query($requete);
@@ -57,13 +60,23 @@ try {
         <input type="datetime-local" name="DATE">
         <input type="submit" value="Voter" name="Valider">
     </form>
+
+    
+
 <?php
+
+
+
 } catch (Exception  $error) {
     echo "error est : ".$error->getMessage();
 }
 
 
 
+
 ?> 
+
+
+
 </body>
 </html>

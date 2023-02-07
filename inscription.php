@@ -37,12 +37,12 @@ if(isset($_SESSION["connexion"]) && $_SESSION["connexion"] == true){
 		<form action="" method="post">
 			<h2>S'inscrire</h2>
 			<div class="form-group">
-				<label for="username">Nom d'utilisateur :</label>
-				<input type="text" placeholder="Pseudo" name="pseudo">
+				<label for="username">Nom d'utilisateur : (4 caractères min)</label>
+				<input type="text" placeholder="Pseudo" name="pseudo" required minlength="4">
 			</div>
 			<div class="form-group">
-				<label for="password">Mot de passe :</label>
-				<input type="password" placeholder="Password" name="mdp">
+				<label for="password">Mot de passe : (4 caractères min)</label>
+				<input type="password" placeholder="Password" name="mdp" minlength="4">
 			</div>
 					<input type="submit" name="inscription" value="S'inscrire"></input>
 				</form>
