@@ -17,7 +17,7 @@ if (isset($_POST['deconnexion'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Shop Homepage - Start Bootstrap Template</title>
+  <title>Site</title>
   <!-- Favicon-->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   <!-- Bootstrap icons-->
@@ -32,6 +32,10 @@ if (isset($_POST['deconnexion'])) {
     <div class="deco">
       <form action="" method="post">
         <input type="submit" name="deconnexion" value="se déco"></input>
+        <form action="verif-form.php" method="get">
+          <input type="search" name="terme">
+          <input type="submit" name="s" value="Rechercher">
+        </form>
       </form>
     </div>
     <div class="container px-4 px-lg-5 my-5">
@@ -55,7 +59,7 @@ if (isset($_POST['deconnexion'])) {
   }
 
 
-  
+
 
 
   if (isset($_POST['connexion'])) {
@@ -75,13 +79,13 @@ if (isset($_POST['deconnexion'])) {
 
   if (isset($_SESSION["idUser"]) && $_SESSION["idUser"] > 0) {
     $idVote = -1;
-    
+
 
     if (isset($_POST["Valider1"])) {
       //echo "Vous avez voter pour = ".$_POST["idFilm"]."";
       //echo "julien";
       //$requete = "INSERT INTO `Vote` (`idFilm`,`idUser`, `DATE`) VALUES ('".$_POST["idFilm"]."','3','".$_POST["DATE"]."')";
-      $requete = "INSERT INTO `Vote` ( `idFilm`, `idUser`, `DATE`) VALUES ( '".$_POST["idFilm"]."', '".$_SESSION["idUser"]."', '" . date("y-m-d") . "')";
+      $requete = "INSERT INTO `Vote` ( `idFilm`, `idUser`, `DATE`) VALUES ( '" . $_POST["idFilm"] . "', '" . $_SESSION["idUser"] . "', '" . date("y-m-d") . "')";
       //echo $requete;
       $resultat = $GLOBALS["pdo"]->query($requete);
       //modif idUser
@@ -89,10 +93,9 @@ if (isset($_POST['deconnexion'])) {
       //echo $idVote;
     }
 
-    
+
 
   ?>
-    <!-- formulaire de déconnexion -->
     <section class="py-5">
       <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -128,14 +131,14 @@ if (isset($_POST['deconnexion'])) {
                   <form action="" method="post">
                     <form action="" method="post">
                       <?php
-                    if(isset($_POST["idFilm"]) && $_POST["idFilm"]==$Film["id"] && $idVote==0){
-                      echo "vous ne pouvez pas voter 2 fois le meme jour";
-                    }else if(isset($_POST["idFilm"]) && $_POST["idFilm"]==$Film["id"] && $idVote>0){
-                      echo "Vote pris en compte";
-                    }
+                      if (isset($_POST["idFilm"]) && $_POST["idFilm"] == $Film["id"] && $idVote == 0) {
+                        echo "vous ne pouvez pas voter 2 fois le meme jour";
+                      } else if (isset($_POST["idFilm"]) && $_POST["idFilm"] == $Film["id"] && $idVote > 0) {
+                        echo "Vote pris en compte";
+                      }
 
-?>
-                      <input type="hidden" name="idFilm" value="<?= $Film["id"] ?>"/>
+                      ?>
+                      <input type="hidden" name="idFilm" value="<?= $Film["id"] ?>" />
                       <input type="submit" value="Voter" name="Valider1"></input>
                       <input type="submit" value="Delete" name="Delete1"></input>
                     </form>
@@ -147,7 +150,7 @@ if (isset($_POST['deconnexion'])) {
                   </div>
                 </div>
               </div>
-              id film = <?= $Film["id"] ?>
+              <!-- id film = <?= $Film["id"] ?> -->
             </div>
 
           <?php
@@ -181,13 +184,13 @@ if (isset($_POST['deconnexion'])) {
           $requeteVote = "SELECT Film.nom FROM `Vote`,Film WHERE Vote.idFilm = Film.id and Film.id = 2";
           $resultatVote = $GLOBALS["pdo"]->query($requeteVote);
           //resultat est du coup un objet de type PDOStatement
-          echo "le film N°2 à " . $resultatVote->rowCount() . " vote";
+          //echo "le film N°2 à " . $resultatVote->rowCount() . " vote";
 
 
           $requetVoteTotal = "SELECT Film.nom as nom,COUNT(Film.id) as vote FROM `Vote`,Film WHERE Vote.idFilm = Film.id group by Film.id";
           $resultatVoteTotal = $GLOBALS["pdo"]->query($requetVoteTotal);
           foreach ($resultatVoteTotal->fetchALL() as $vote) {
-            echo "<div>le film " . $vote["nom"] . " a " . $vote["vote"] . " votes<br></div>";
+            //echo "<div>le film " . $vote["nom"] . " a " . $vote["vote"] . " votes<br></div>";
           }
           ?>
         </div>
@@ -225,7 +228,7 @@ if (isset($_POST['deconnexion'])) {
 
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p>
+      <p class="m-0 text-center text-white">Théo et Jean BTS SN 1 La PROVIDENCE</p>
     </div>
   </footer>
   <!-- Bootstrap core JS-->
