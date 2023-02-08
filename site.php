@@ -71,17 +71,19 @@
 if (isset($_POST["Valider"])) {
   echo "Vous avez voter pour = ".$_POST["idFilm"]."";
   $requete = "INSERT INTO `Vote` (`idFilm`,`idUser`, `DATE`) VALUES ('".$_POST["idFilm"]."','3','".$_POST["DATE"]."')";
+  //modif idUser
   }
 
  
   if (isset($_POST["Delete"])) {
           $requete = "DELETE FROM `Vote` WHERE `Vote`.`idFilm` = 1 && `idUser` = 3";
+          //modif idFilm et idUser
   }
   //.$_POST["idUser"].
   //`idUser`
   //DELETE FROM `Vote` WHERE `Vote`.`id` = 23
   
-  $resultat = $GLOBALS["pdo"]->query($requete);
+  //$resultat = $GLOBALS["pdo"]->query($requete);
 
   $requeteFilm = "select * from Film";
   $resultatFilm = $GLOBALS["pdo"]->query($requeteFilm);
