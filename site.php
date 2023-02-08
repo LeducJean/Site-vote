@@ -64,6 +64,86 @@
     include'SiteBoos.html';
 
 
+    
+
+//"SELECT * FROM `Vote` WHERE idFilm = 1";
+
+if (isset($_POST["Valider"])) {
+  echo "Vous avez voter pour = ".$_POST["idFilm"]."";
+  $requete = "INSERT INTO `Vote` (`idFilm`,`idUser`, `DATE`) VALUES ('".$_POST["idFilm"]."','3','".$_POST["DATE"]."')";
+  }
+
+ 
+  if (isset($_POST["Delete"])) {
+          $requete = "DELETE FROM `Vote` WHERE `Vote`.`idFilm` = 1 && `idUser` = 3";
+  }
+  //.$_POST["idUser"].
+  //`idUser`
+  //DELETE FROM `Vote` WHERE `Vote`.`id` = 23
+  
+  $resultat = $GLOBALS["pdo"]->query($requete);
+
+  $requeteFilm = "select * from Film";
+  $resultatFilm = $GLOBALS["pdo"]->query($requeteFilm);
+  //resultat est du coup un objet de type PDOStatement
+  $tabFilm = $resultatFilm->fetchALL();
+
+      
+
+  //$requete = "select * from User";
+  //$resultat = $GLOBALS["pdo"]->query($requete);
+  //resultat est du coup un objet de type PDOStatement
+  //$tabUser = $resultat->fetchALL();
+
+  if(isset($_POST['Valider'])){
+    if(!isset($_SESSION['click_count'])){
+      $_SESSION['click_count'] = 1;
+    } else {
+      $_SESSION['click_count']++;
+    }
+    echo "Nombre de clics : ".$_SESSION['click_count'];
+  }
+  
+  ?>
+   <form action="" method="post">
+      <select name="idFilm">
+          <?php
+          foreach ($tabFilm as $Film) {
+              ?>
+              <option value="<?=$Film["id"]?>"><?=$Film["nom"]." ".$Film["annee"]?></option>
+              <?php
+          }
+          ?>
+      </select>
+      <input type="datetime-local" name="DATE">
+      <input type="submit" value="Voter" name="Valider">
+      <input type="submit" value="Delete" name="Delete">
+      <img src="https://fr.web.img2.acsta.net/c_310_420/pictures/22/08/25/09/04/2146702.jpg"alt="Logo HubSpot" width=10% height=10%/>
+  </form>
+
+  
+<?php
+
+
+      $requeteVote = "SELECT Film.nom FROM `Vote`,Film WHERE Vote.idFilm = Film.id and Film.id = 2";
+      $resultatVote = $GLOBALS["pdo"]->query($requeteVote);
+      //resultat est du coup un objet de type PDOStatement
+      echo "le film N°2 à " . $resultatVote->rowCount() . " vote";
+
+
+      $requetVoteTotal = "SELECT Film.nom as nom,COUNT(Film.id) as vote FROM `Vote`,Film WHERE Vote.idFilm = Film.id group by Film.id";
+      $resultatVoteTotal = $GLOBALS["pdo"]->query($requetVoteTotal);
+      foreach ($resultatVoteTotal->fetchALL() as $vote) {
+          echo "<div>le film " . $vote["nom"] . " a " . $vote["vote"] . " votes<br></div>";
+      }
+
+
+
+
+
+
+    
+
   }else{
   ?>
 
