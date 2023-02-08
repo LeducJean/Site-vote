@@ -84,7 +84,7 @@
       <?php } ?>
     </form>
 
-    <form action="inscription.php" method="post">
+    <form action="inscription.php" method="">
       <input type="submit" name="inscription" value="Inscrivez-vous"></input>
     </form>
 
