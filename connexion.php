@@ -33,7 +33,9 @@
     $resultat = $GLOBALS["pdo"]->query($query);
     if($resultat->rowCount()>0){
       $_SESSION["connexion"]= true;
-      include'SiteFilm.php';
+      include'SiteBoos.html';
+    }else {
+      echo "Pseudo ou mot de passe incorrect";
     }
   }
 
