@@ -8,8 +8,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="inscription.css">
-  <title>S'inscrire</title>
+  <link rel="stylesheet" type="text/css" href="site.css">
+  <title>Site</title>
 </head>
 
 <body>
@@ -33,7 +33,6 @@
     $resultat = $GLOBALS["pdo"]->query($query);
     if($resultat->rowCount()>0){
       $_SESSION["connexion"]= true;
-      include'SiteBoos.html';
     }else {
       echo "Pseudo ou mot de passe incorrect";
     }
@@ -42,9 +41,8 @@
 
 
   if(isset($_SESSION["connexion"]) && $_SESSION["connexion"] == true){
-    ?> <form action="" method="post">
-    <input type="submit" name="deconnexion" value="se déconnecter"></input>
-  </form>
+    ?>
+     
 
   <?php
   if(isset($_POST['deconnexion'])) {
@@ -61,6 +59,8 @@
 
     //insérer le site ici
 
+    
+    include'SiteBoos.html';
 
 
   }else{

@@ -64,6 +64,16 @@
   --bs-body-bg: #fff;
 }
 
+.deco {
+	width: 75px;
+	text-align:left;
+	margin-top: -50px;
+}
+
+.boutonesp {
+	margin-left: 20px;
+}
+
 *,
 *::before,
 *::after {
