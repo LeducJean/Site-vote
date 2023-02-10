@@ -32,9 +32,14 @@ if (isset($_POST['deconnexion'])) {
     <div class="deco">
       <form action="" method="post">
         <input type="submit" name="deconnexion" value="se déco"></input>
+        </form>
+      </form>
+    </div>
+    <div class="recherche">
+      <form action="" method="post">
         <form action="verif-form.php" method="get">
           <input type="search" name="terme">
-          <input type="submit" name="s" value="Rechercher">
+          <input type="submit" name="rechercher" value="Rechercher">
         </form>
       </form>
     </div>
@@ -128,6 +133,16 @@ if (isset($_POST['deconnexion'])) {
                     <!-- Product price-->
                     Nombres de votes :
                   </div>
+
+                  <?php
+
+
+                  $requetVoteTotal = "SELECT Film.nom as nom,COUNT(Film.id) as vote FROM `Vote`,Film WHERE Vote.idFilm = Film.id group by Film.id";
+                  $resultatVoteTotal = $GLOBALS["pdo"]->query($requetVoteTotal);
+                  foreach ($resultatVoteTotal->fetchALL() as $vote) {
+                    echo "<div>le film " . $vote["nom"] . " a " . $vote["vote"] . " votes<br></div>";
+                  }
+                  ?>
                   <form action="" method="post">
                     <form action="" method="post">
                       <?php

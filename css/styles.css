@@ -71,6 +71,14 @@
   color: black;
 }
 
+.recherche {
+	width: 100px;
+  float: right;
+	margin-top: -50px;
+  color: black;
+  margin-right: 108px;
+}
+
 .boutonesp {
 	margin-left: 20px;
 }
@@ -86,6 +94,38 @@
     scroll-behavior: smooth;
   }
 }
+
+.login-form {
+	width: 500px;
+	margin: auto;
+	text-align: center;
+	padding: 30px;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	font-size: 20px;
+}
+
+input[type="submit"] {
+	width: 100%;
+}
+
+
 
 body {
   margin: 0;
