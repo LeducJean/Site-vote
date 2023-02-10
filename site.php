@@ -32,7 +32,7 @@ if (isset($_POST['deconnexion'])) {
     <div class="deco">
       <form action="" method="post">
         <input type="submit" name="deconnexion" value="se déco"></input>
-        </form>
+      </form>
       </form>
     </div>
     <div class="recherche">
@@ -98,6 +98,12 @@ if (isset($_POST['deconnexion'])) {
       //echo $idVote;
     }
 
+    if (isset($_POST["Delete1"])) {
+      $deletevote = 'DELETE FROM `Vote` WHERE `Vote`.`id` = "' . $idVote . '"';
+      echo "Vote annulé";
+      //echo $deletevote;
+      $resultat = $GLOBALS["pdo"]->query($deletevote);
+    }
 
 
   ?>
@@ -140,7 +146,7 @@ if (isset($_POST['deconnexion'])) {
                   $requetVoteTotal = "SELECT Film.nom as nom,COUNT(Film.id) as vote FROM `Vote`,Film WHERE Vote.idFilm = Film.id group by Film.id";
                   $resultatVoteTotal = $GLOBALS["pdo"]->query($requetVoteTotal);
                   foreach ($resultatVoteTotal->fetchALL() as $vote) {
-                    echo "<div>le film " . $vote["nom"] . " a " . $vote["vote"] . " votes<br></div>";
+                    echo "<div>Le film " . $vote["nom"] . " a " . $vote["vote"] . " votes.<p></div>";
                   }
                   ?>
                   <form action="" method="post">

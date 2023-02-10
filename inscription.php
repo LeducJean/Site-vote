@@ -51,6 +51,7 @@ if(isset($_SESSION["connexion"]) && $_SESSION["connexion"] == true){
 	</div>
 
 <?php
+
 if(isset($_POST["inscription"])){
 	$requeteUser = "INSERT INTO User(pseudo, mdp) VALUES ('".$_POST['pseudo']."','".$_POST['mdp']."')";
     $result2 = $GLOBALS["pdo"]->query($requeteUser);
